@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-16"/>
+		<script src="decode.js"></script>
+		<textarea id="toMain" hidden></textarea>
+		<textarea id="imageDataArray" hidden></textarea>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<title>LSB Decode</title>
+		<meta name="description" content="Decode/steganalysis for LSB algorithm">
+		<meta name="author" content="MettleSphee">
+	</head>
+	
+	<body>
+		<a href="../index.html"><h2>Main Menu</h2></a>
+		<canvas id="canv1" hidden></canvas>
+		<div id="div1">
+			<input type="file" class="file" id="fileUpload" accept=".png, image/png" onchange="previewFile()"/>
+		</div>
+		<div id="awaiting"><h3>Awaiting input...</h3></div>
+		<img src="" height="96" alt="Image preview" hidden=""/>
+		<br>
+		<div id="buttonChoice" hidden="">
+			<select name="Option1" id="op1">
+				<option value="1" selected>Red</option>
+				<option value="2">Green</option>
+				<option value="3">Blue</option>
+				<option value="4">Alpha</option>
+			</select>
+			
+			<select name="Option2" id="op2">
+				<option value="">Nothing</option>
+				<option value="1">Red</option>
+				<option value="2" selected>Green</option>
+				<option value="3">Blue</option>
+				<option value="4">Alpha</option>
+			</select>
+			
+			<select name="Option3" id="op3">
+				<option value="">Nothing</option>
+				<option value="1">Red</option>
+				<option value="2">Green</option>
+				<option value="3" selected>Blue</option>
+				<option value="4">Alpha</option>
+			</select>
+			
+			<select name="Option4" id="op4">
+				<option value="">Nothing</option>
+				<option value="1">Red</option>
+				<option value="2">Green</option>
+				<option value="3">Blue</option>
+				<option value="4" selected>Alpha</option>
+			</select>
+			
+			<select name="SelectedBit" id="selectedBit">
+				<option value="0" selected>Bit 0</option>
+				<option value="1">Bit 1</option>
+				<option value="2">Bit 2</option>
+				<option value="3">Bit 3</option>
+				<option value="4">Bit 4</option>
+				<option value="5">Bit 5</option>
+				<option value="6">Bit 6</option>
+				<option value="7">Bit 7</option>
+			</select>
+			
+			<button onclick="selectedInit();">Submit</button>
+		</div>
+		<!-- &#13;&#10; new line chars -->
+		<div id="textOutput" hidden="">
+			<h3>LSB decoding results:</h3>
+			Readable string view:<br>
+			<textarea id="stringsOutput" style="width: 567px"></textarea><br>
+			<br> Hex View:&nbsp;&nbsp;&nbsp;&nbsp;
+			<font color="blue", style="font-family: monospace; font-size:14px; word-spacing: -1.2px;">
+			00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F</font><br>
+			<textarea id="hexOffsetH", style="width: 82px; height: 50%;">00000000</textarea>
+			<textarea id="hexView", style="width: 368px; height: 50%;"></textarea>
+			<textarea id="hexDecodedView", style="width: 142px; height: 50%;"></textarea>
+		</div>
+		<script>
+			function syncScrolls(){
+				$("#hexOffsetH").scroll(function () { 
+					$("#hexView").scrollTop($("#hexOffsetH").scrollTop());
+					$("#hexDecodedView").scrollTop($("#hexOffsetH").scrollTop());
+				});
+				$("#hexView").scroll(function () { 
+					$("#hexDecodedView").scrollTop($("#hexView").scrollTop());
+					$("#hexOffsetH").scrollTop($("#hexView").scrollTop());
+				});
+				$("#hexDecodedView").scroll(function () { 
+					$("#hexOffsetH").scrollTop($("#hexDecodedView").scrollTop());
+					$("#hexView").scrollTop($("#hexDecodedView").scrollTop());
+				});
+			}
+		</script>
+	</body>
+</html>

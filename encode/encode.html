@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-16"/>
+		<script src="encode.js"></script>
+		<textarea id="binStore" hidden></textarea>
+		<title>LSB Encode</title>
+		<meta name="description" content="Encoder for LSB algorithm">
+		<meta name="author" content="MettleSphee">
+	</head>
+	<body>
+		<a href="../index.html"><h2>Main Menu</h2></a>
+		<div id="div1">
+			<input type="file" class="file" id="fileUpload" accept=".png, image/png" onchange="previewFile()"/>
+		</div>
+		<div id="awaiting"><h3>Awaiting input...</h3></div>
+		<img src="" height="96" alt="Image preview" hidden=""/>
+		<br>
+		<div id="buttonChoice" hidden="">
+			<select name="Option1" id="op1">
+				<option value="1" selected>Red</option>
+				<option value="2">Green</option>
+				<option value="3">Blue</option>
+				<option value="4">Alpha</option>
+			</select>
+			
+			<select name="Option2" id="op2">
+				<option value="">Nothing</option>
+				<option value="1">Red</option>
+				<option value="2" selected>Green</option>
+				<option value="3">Blue</option>
+				<option value="4">Alpha</option>
+			</select>
+			
+			<select name="Option3" id="op3">
+				<option value="">Nothing</option>
+				<option value="1">Red</option>
+				<option value="2">Green</option>
+				<option value="3" selected>Blue</option>
+				<option value="4">Alpha</option>
+			</select>
+			
+			<select name="Option4" id="op4">
+				<option value="" selected>Nothing</option>
+				<option value="1">Red</option>
+				<option value="2">Green</option>
+				<option value="3">Blue</option>
+				<option value="4">Alpha</option>
+			</select>
+			
+			<select name="SelectedBit" id="selectedBit">
+				<option value="0" selected>Bit 0</option>
+				<option value="1">Bit 1</option>
+				<option value="2">Bit 2</option>
+				<option value="3">Bit 3</option>
+				<option value="4">Bit 4</option>
+				<option value="5">Bit 5</option>
+				<option value="6">Bit 6</option>
+				<option value="7">Bit 7</option>
+			</select>
+			<h3>Text to insert into image:</h3><textarea id="inputText"></textarea>
+			<h3>Select row and column where text will start:</h3>
+			<div id="positionDetailsDisplay"></div>
+			<button onclick="selectedInit();">Submit</button>
+		</div>
+		<!-- &#13;&#10; new line chars -->
+		<div id="imageOutput" hidden="">
+			<h3>LSB-encoded image:</h3>
+			<canvas id="canv1" hidden></canvas>
+			<canvas id="canv2"></canvas><br>
+			<a href="" download="encode.png" id="downloadEncoded">Download</a>
+		</div>
+	</body>
+	
+</html>
